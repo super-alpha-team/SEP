@@ -19,7 +19,16 @@ namespace SEP
     }
 }
 
-
+/*string strConnection = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+IDAO dao = new PostgresSQLDAO(strConnection);
+UserDAO user = dao.GetUserDAO();
+List<UserDTO> lstUser = user.All();
+foreach (UserDTO u in lstUser)
+{
+    Debug.WriteLine("UserName: " + u.Username);
+    Debug.WriteLine("PassWord: " + u.Password);
+    Debug.WriteLine("Role: " + u.Role);
+}*/
 /**
  * Info
  * - Table: ABC

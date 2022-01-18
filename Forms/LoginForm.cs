@@ -19,7 +19,13 @@ namespace SEP.Forms
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            
 
+        }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+            //Membership.login(usernameTextBox.Text, passwordTextBox.Text); boolean
         }
     }
 }

@@ -12,7 +12,9 @@ namespace SEP
         {
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
-            Application.Run(new MainForm());
+            //Application.Run(new MainForm());
+
+
         }
     }
 }

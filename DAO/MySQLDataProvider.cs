@@ -20,7 +20,7 @@ namespace SEP.DAO
             _con = con;
         }
 
-        public DataTable ExecuteQuery(string strQuery)
+        public static DataTable ExecuteQuery(string strQuery)
         {
             DataTable resTable = new DataTable();
 
@@ -44,13 +44,12 @@ namespace SEP.DAO
             return resTable;
         }
 
-        public void ExecuteNoneQuery(string strQuery)
+        public static void ExecuteNoneQuery(string strQuery)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = strQuery;
-                cmd.CommandType = CommandType.Text;
+                _con.Open();
+                SqlCommand cmd = new SqlCommand(strQuery, _con);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

@@ -33,7 +33,7 @@ namespace SEP
 
             IDAO pro = new ProductDAO();
 
-            MainForm mainForm = new MainForm(pro);
+            MainForm mainForm = new ProductFrom(pro);
             Application.Run(mainForm);
         }
     }

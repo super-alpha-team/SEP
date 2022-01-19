@@ -18,10 +18,8 @@ namespace SEP.Forms
 
         private Dictionary<string, TextBox> inputList = new Dictionary<string, TextBox>();
         private List<Control> controlList = new List<Control>();
-        private string[] columns;
+        public Dictionary<String, String> columns = new Dictionary<string, string>();
         public List<string> results =  new List<string>();
-
-        public string[] Columns { get => columns; set => columns = value; }
 
         public AddForm()
         {
@@ -36,7 +34,7 @@ namespace SEP.Forms
         }
         private void addButton_Click(object? sender, EventArgs e)
         {
-            foreach (string column in Columns)
+            foreach (string column in columns.Keys)
             {
                 results.Add(inputList[column].Text);
             }
@@ -76,7 +74,7 @@ namespace SEP.Forms
             results.Clear();
 
             int i = 0;
-            foreach (string column in Columns)
+            foreach (string column in columns.Keys)
             {
                 Label label = new Label();
                 label.Text = column;

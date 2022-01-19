@@ -77,8 +77,10 @@ namespace SEP.Forms
         }
         private void addRowButton_Click(object sender, EventArgs e)
         {
-            string[] columns = { "Username", "Password", "Role" };
-            addForm.Columns = columns;
+            //string[] columns = { "Username", "Password", "Role" };
+            //string[] columns = userDAO.GetColumns().Keys.ToArray();
+            Dictionary<string, string> columns = userDAO.GetColumns();
+            addForm.columns = columns;
             addForm.ShowDialog();
             if(addForm.results.Count != 0)
             {
@@ -88,7 +90,7 @@ namespace SEP.Forms
         }
         private void updateRowButton_Click(object sender, EventArgs e)
         {
-            
+            DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
 
         }
 

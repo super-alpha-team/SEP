@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAO;
+using DTO;
 
 namespace SEP.Membership
 {
@@ -10,34 +12,66 @@ namespace SEP.Membership
     {
         private Membership() { }
 
-        private static Membership? _membership;
-        private string? _username { get; set; }
-        private string? _password { get; set; }
-        private string? _role { get; set; }
+        private IDAO user;
+        private IDAO role;
 
-        public static Membership getMembership()
+        public Membership(IDatabaseDAO databaseDAO)
         {
-            if (_membership == null)
+            user = databaseDAO.GetUserDAO();
+            role = databaseDAO.GetRoleDAO();
+        }
+
+        public bool Login(string username, string password)
+        {
+            List<object> lstUser = user.All();
+            foreach (UserDTO u in lstUser)
             {
-                _membership = new Membership();
+                if(u.Username == username && u.Password == password)
+                {
+                    return true;
+                }
             }
-            return _membership;
+           
+            return false;
         }
 
-        public static void registerApp (DataConnection data)
+        public bool LoginWithAdminRole(string username, string password)
         {
-            data.createConnection();
+            List<object> lstUser = user.All();
+            foreach (UserDTO u in lstUser)
+            {
+                if (u.Username == username && u.Password == password && u.Role == "admin")
+                {
+                    return true;
+                }
+            }
 
-            
-
+            return false;
         }
 
-        public static Tuple<string, bool> login(string username, string password) {
-            //todo: call DAO to get login data
-            //check xem 
+        public bool Register(string username, string password)
+        {
+            List<object> lstUser = user.All();
+            foreach (UserDTO u in lstUser)
+            {
+                if (u.Username == username)
+                {
+                    return false;
+                }
+            }
+            UserDTO newUser = new UserDTO();
+            newUser.Username = username;
+            newUser.Password = password;
 
+            user.Inserṭ̣̣(newUser);
 
-            return new Tuple<string, bool>(username, true);
+            return true;
+        }
+
+        public bool Logout(string username)
+        {
+            
+            return true;
         }
     }
 }

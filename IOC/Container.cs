@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SEP.Membership
+namespace SEP.IOC
 {
-    public interface DataConnection
+    internal class Container
     {
-        public string createConnection();
-
     }
 }

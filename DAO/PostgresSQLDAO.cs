@@ -5,19 +5,19 @@ using System.Text;
 
 namespace DAO
 {
-    public class PostgresSQLDAO : IDAO
+    public class PostgresSQLDAO : IDatabaseDAO
     {
         private string _strConnection;
         public PostgresSQLDAO(string strConnection)
         {
             _strConnection = strConnection;
         }
-        public RoleDAO GetRoleDAO()
+        public IDAO GetRoleDAO()
         {
-            throw new NotImplementedException(_strConnection);
+            return new PostgresSQLRoleDAO(_strConnection);
         }
 
-        public UserDAO GetUserDAO()
+        public IDAO GetUserDAO()
         {
             return new PostgresSQLUserDAO(_strConnection);
         }

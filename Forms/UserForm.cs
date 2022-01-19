@@ -22,8 +22,8 @@ namespace SEP.Forms
 
         private AddForm addForm = new AddForm();
         private UpdateForm updateForm = new UpdateForm();
-        private UserDAO userDAO;
-        public UserForm(UserDAO userDAO)
+        private IDAO userDAO;
+        public UserForm(IDAO userDAO)
         {
             //InitializeComponent();
             this.userDAO = userDAO;
@@ -34,7 +34,8 @@ namespace SEP.Forms
 
         private void PopulateUserDataGridView()
         {
-            List<UserDTO> lstUser = userDAO.All();
+            //List<UserDTO> lstUser = userDAO.All();
+            List<object> lstUser = userDAO.All();
             foreach (UserDTO u in lstUser)
             {
                 dataGridView.Rows.Add(u.Username, u.Password, u.Role);

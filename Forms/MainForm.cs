@@ -235,9 +235,9 @@ namespace SEP.Forms
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
-        private void PopulateUserDataGridView(UserDAO user) 
+        private void PopulateUserDataGridView(IDAO user) 
         {
-            List<UserDTO> lstUser = user.All();
+            List<object> lstUser = user.All();
             foreach (UserDTO u in lstUser)
             {
                 dataGridView.Rows.Add(u.Username, u.Password, u.Role);

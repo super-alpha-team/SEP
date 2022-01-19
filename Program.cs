@@ -20,8 +20,8 @@ namespace SEP
             Application.EnableVisualStyles();
 
             string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
-            IDAO dao = new PostgresSQLDAO(connetionString);
-            UserDAO user = dao.GetUserDAO();
+            IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+            IDAO user = dao.GetUserDAO();
             UserForm form = new UserForm(user);
             Application.Run(form);
         }

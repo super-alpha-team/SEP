@@ -1,4 +1,11 @@
+using DAO;
+using DTO;
+using SEP.DAO;
 using SEP.Forms;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace SEP
 {
@@ -12,7 +19,12 @@ namespace SEP
         {
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
-            Application.Run(new MainForm());
+
+            string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+            IDAO dao = new PostgresSQLDAO(connetionString);
+            UserDAO user = dao.GetUserDAO();
+            UserForm form = new UserForm(user);
+            Application.Run(form);
         }
     }
 }

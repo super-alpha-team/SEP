@@ -5,19 +5,19 @@ using System.Text;
 
 namespace DAO
 {
-    public class MySQLDAO : IDAO
+    public class MySQLDAO : IDatabaseDAO
     {
         private string _strConnection;
         public MySQLDAO(string strConnection)
         {
             _strConnection = strConnection;
         }
-        public UserDAO GetUserDAO()
+        public IDAO GetUserDAO()
         {
             throw new NotImplementedException();
         }
 
-        public RoleDAO GetRoleDAO()
+        public IDAO GetRoleDAO()
         {
             throw new NotImplementedException();
         }

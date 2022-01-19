@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DTO;
 
 namespace DAO
 {
-    public interface IDAO
-    {
-        UserDAO GetUserDAO();
-        RoleDAO GetRoleDAO();
+    public interface IDAO {
+        void Inserṭ̣̣(Object a);
+        void Update(Object a);
+        void Delete(Object a);
+        List<Object> All();
+        Dictionary<String, String> GetColumns();
     }
 }

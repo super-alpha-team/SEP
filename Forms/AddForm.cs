@@ -34,9 +34,10 @@ namespace SEP.Forms
         }
         private void addButton_Click(object? sender, EventArgs e)
         {
-            foreach (string column in columns.Keys)
+            foreach (string key in columns.Keys)
             {
-                results.Add(inputList[column].Text);
+                columns[key] = inputList[key].Text;
+                results.Add(inputList[key].Text);
             }
             this.Close();
         }

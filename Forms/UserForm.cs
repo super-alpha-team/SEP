@@ -22,11 +22,11 @@ namespace SEP.Forms
 
         private AddForm addForm = new AddForm();
         private UpdateForm updateForm = new UpdateForm();
-        private IDAO userDAO;
+        private IDAO dao;
         public UserForm(IDAO userDAO)
         {
             //InitializeComponent();
-            this.userDAO = userDAO;
+            this.dao = userDAO;
             SetupLayout();
             SetupUserDataGridView();
             PopulateUserDataGridView();
@@ -34,8 +34,7 @@ namespace SEP.Forms
 
         private void PopulateUserDataGridView()
         {
-            //List<UserDTO> lstUser = userDAO.All();
-            List<object> lstUser = userDAO.All();
+            List<object> lstUser = dao.All();
             foreach (UserDTO u in lstUser)
             {
                 dataGridView.Rows.Add(u.Username, u.Password, u.Role);
@@ -63,9 +62,13 @@ namespace SEP.Forms
             dataGridView.GridColor = Color.Black;
             dataGridView.RowHeadersVisible = false;
 
-            dataGridView.Columns[0].Name = "Username";
-            dataGridView.Columns[1].Name = "Password";
-            dataGridView.Columns[2].Name = "Role";
+            int i = 0;
+            foreach(string key in dao.GetColumns().Keys)
+            {
+                dataGridView.Columns[i].Name = key;
+                i++;
+            }
+            
             //dataGridView.Columns[2].DefaultCellStyle.Font =
             //    new Font(dataGridView.DefaultCellStyle.Font, FontStyle.Italic);
 
@@ -79,7 +82,7 @@ namespace SEP.Forms
         {
             //string[] columns = { "Username", "Password", "Role" };
             //string[] columns = userDAO.GetColumns().Keys.ToArray();
-            Dictionary<string, string> columns = userDAO.GetColumns();
+            Dictionary<string, string> columns = dao.GetColumns();
             addForm.columns = columns;
             addForm.ShowDialog();
             if(addForm.results.Count != 0)
@@ -91,7 +94,18 @@ namespace SEP.Forms
         private void updateRowButton_Click(object sender, EventArgs e)
         {
             DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
-
+            Dictionary<string, string> columns = dao.GetColumns();
+            foreach(string key in columns.Keys)
+            {
+                columns[key] = (string)selectedRow.Cells[key].Value;
+            }
+            updateForm.columns = columns;
+            updateForm.ShowDialog();
+            if (updateForm.results.Count != 0)
+            {
+                string[] row = updateForm.results.ToArray();
+                selectedRow.SetValues(row);
+            }
         }
 
         private void deleteRowButton_Click(object sender, EventArgs e)

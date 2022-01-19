@@ -1,5 +1,7 @@
 using DAO;
 using DTO;
+using Npgsql;
+using SEP.DAO;
 using SEP.Forms;
 using System.Configuration;
 using System.Data;
@@ -20,10 +22,15 @@ namespace SEP
             Application.EnableVisualStyles();
 
             string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+            //IDAO user = dao.GetUserDAO();
+            //UserForm mainForm = new UserForm(user);
+
+            //MainForm mainForm = new MainForm(new PostgresSQLDataProvider(new NpgsqlConnection(connetionString)).ExecuteQuery("SELECT * FROM \"Users\""));
             IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
             IDAO user = dao.GetUserDAO();
-            UserForm form = new UserForm(user);
-            Application.Run(form);
+            MainForm mainForm = new MainForm(user);
+            Application.Run(mainForm);
         }
     }
 }

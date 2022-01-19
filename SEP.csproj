@@ -10,7 +10,11 @@
 
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="Membership\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="6.0.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,5 @@
 using DAO;
 using DTO;
-using SEP.DAO;
 using SEP.Forms;
 using System.Configuration;
 using System.Data;
@@ -9,7 +8,7 @@ using System.Diagnostics;
 
 namespace SEP
 {
-    internal static class Program
+    public class Program
     {
         /// <summary>
         ///  The main entry point for the application.
@@ -30,14 +29,19 @@ namespace SEP
 }
 
 /*string strConnection = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
-IDAO dao = new PostgresSQLDAO(strConnection);
-UserDAO user = dao.GetUserDAO();
-List<UserDTO> lstUser = user.All();
-foreach (UserDTO u in lstUser)
+IDatabaseDAO dao = new PostgresSQLDAO(strConnection);
+IDAO user = dao.GetUserDAO();
+Debug.WriteLine(user.GetColumns().ToString());
+createForm(user);
+void createForm(IDAO user)
 {
-    Debug.WriteLine("UserName: " + u.Username);
-    Debug.WriteLine("PassWord: " + u.Password);
-    Debug.WriteLine("Role: " + u.Role);
+    List<object> lstUser = user.All();
+    foreach (UserDTO u in lstUser)
+    {
+        Debug.WriteLine("UserName: " + u.Username);
+        Debug.WriteLine("PassWord: " + u.Password);
+        Debug.WriteLine("Role: " + u.Role);
+    }
 }*/
 /**
  * Info

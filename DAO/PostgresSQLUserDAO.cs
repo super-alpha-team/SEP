@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace DAO
@@ -17,9 +18,9 @@ namespace DAO
             _strConnection = strConnection;
         }
         override
-        public List<UserDTO> All()
+        public List<object> All()
         {
-            List<UserDTO> lstUserDTO = new List<UserDTO>();
+            List<object> lstUserDTO = new List<object>();
             string query = "SELECT * FROM \"Users\"";
             IDataProvider provider = new PostgresSQLDataProvider(new NpgsqlConnection(_strConnection));
             DataTable dt = provider.ExecuteQuery(query);
@@ -33,23 +34,33 @@ namespace DAO
             }
             return lstUserDTO;
         }
-        
-        override
-        public void Delete()
+
+        public override void Delete(object a)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        override
-        public void Insert()
+        public override Dictionary<string, string> GetColumns()
         {
-            throw new System.NotImplementedException();
+            Dictionary<string, string> columns=new Dictionary<string, string>();
+            PropertyInfo[] props = typeof(UserDTO).GetProperties();
+            foreach (PropertyInfo prop in props)
+            {
+                string name = prop.Name;
+                string type = prop.PropertyType.ToString();
+                columns.Add(name, type);
+            }
+            return columns;
         }
 
-        override
-        public void Update()
+        public override void Inserṭ̣̣(object a)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public override void Update(object a)
+        {
+            throw new NotImplementedException();
         }
     }
 }

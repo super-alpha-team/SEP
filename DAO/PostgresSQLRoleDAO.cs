@@ -14,27 +14,29 @@ namespace DAO
         }
 
         override
-        public List<RoleDTO> All()
+        public List<object> All()
         {
             throw new System.NotImplementedException();
         }
 
-        override
-        public void Delete()
+        public override void Delete(object a)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        override
-        public void Insert()
+        public override Dictionary<string, string> GetColumns()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        override
-        public void Update()
+        public override void Inserṭ̣̣(object a)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public override void Update(object a)
+        {
+            throw new NotImplementedException();
         }
     }
 }

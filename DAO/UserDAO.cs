@@ -6,27 +6,14 @@ using System.Text;
 
 namespace DAO
 {
-    public abstract class UserDAO
+    public abstract class UserDAO : IDAO
     {
         protected string _strConnection="";
-        public virtual void Insert()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public virtual void Update()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public virtual void Delete()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public virtual List<UserDTO> All()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract List<object> All();
+        public abstract void Delete(object a);
+        public abstract Dictionary<string, string> GetColumns();
+        public abstract void Inserṭ̣̣(object a);
+        public abstract void Update(object a);
     }
 }

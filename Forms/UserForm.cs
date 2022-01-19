@@ -23,10 +23,11 @@ namespace SEP.Forms
         private AddForm addForm = new AddForm();
         private UpdateForm updateForm = new UpdateForm();
         private IDAO userDAO;
-        public UserForm(IDAO userDAO)
+        public UserForm(IDAO userDAO, Size formSize)
         {
             //InitializeComponent();
             this.userDAO = userDAO;
+            this.Size = formSize;
             SetupLayout();
             SetupUserDataGridView();
             PopulateUserDataGridView();
@@ -107,7 +108,7 @@ namespace SEP.Forms
 
         private void SetupLayout()
         {
-            this.Size = new Size(600, 500);
+            //this.Size = new Size(600, 500);
 
             addNewRowButton.Text = "Add Row";
             addNewRowButton.Size = new Size(160, 34);

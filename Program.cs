@@ -22,7 +22,7 @@ namespace SEP
             string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
             IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
             IDAO user = dao.GetUserDAO();
-            UserForm form = new UserForm(user);
+            UserForm form = new UserForm(user, new Size(1000, 1000));
             Application.Run(form);
         }
     }

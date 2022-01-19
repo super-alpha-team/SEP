@@ -19,10 +19,10 @@ namespace SEP.DEMO
             foreach (DataRow dr in dt.Rows)
             {
                 ProductDTO proDTO = new ProductDTO();
-                proDTO.Id = dr["id"].ToString();
-                proDTO.Name = dr["name"].ToString();
-                proDTO.Price = dr["price"].ToString();
-                proDTO.CategoryId = dr["category_id"].ToString();
+                proDTO.id = dr["id"].ToString();
+                proDTO.name = dr["name"].ToString();
+                proDTO.price = dr["price"].ToString();
+                proDTO.category_id = dr["category_id"].ToString();
                 lstDTO.Add(proDTO);
             }
             return lstDTO;
@@ -43,7 +43,7 @@ namespace SEP.DEMO
         }
         public void Delete(Dictionary<string, string> values)
         {
-            string query = "DELETE FROM \"Products\" WHERE Id='" + values["Id"] + "'";
+            string query = "DELETE FROM \"Products\" WHERE id='" + values["id"] + "'";
             DataProvider.ExecuteNoneQuery(query);
         }
 
@@ -69,7 +69,7 @@ namespace SEP.DEMO
 
         public void Inserṭ̣̣(Dictionary<string, string> values)
         {
-            string query = "INSERT INTO \"Products\" (Id, Name, Price, CategoryId) values(N'" + values["Id"] + "',N'" + values["Name"] + "',N'" + values["Price"] + values["CategoryId"] + "')";
+            string query = "INSERT INTO \"Products\" (id, name, price, category_id) values(N'" + values["id"] + "',N'" + values["name"] + "',N'" + values["price"] + "',N'" + values["category_id"] + "')";
             DataProvider.ExecuteNoneQuery(query);
         }
 
@@ -81,7 +81,7 @@ namespace SEP.DEMO
         }
         public void Update(Dictionary<string, string> values)
         {
-            string query = "UPDATE \"Products\" SET Name='" + values["Name"] + "', Price='" + values["Price"] + "', CategoryId='" + values["CategoryId"] + "' WHERE Id='" + values["Id"] + "'";
+            string query = "UPDATE \"Products\" SET name='" + values["name"] + "', price='" + values["price"] + "', category_id='" + values["category_id"] + "' WHERE id='" + values["id"] + "'";
             DataProvider.ExecuteNoneQuery(query);
         }
     }

@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using SEP.DEMO;
 
 namespace SEP
 {
@@ -27,9 +28,12 @@ namespace SEP
             //UserForm mainForm = new UserForm(user);
 
             //MainForm mainForm = new MainForm(new PostgresSQLDataProvider(new NpgsqlConnection(connetionString)).ExecuteQuery("SELECT * FROM \"Users\""));
-            IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
-            IDAO user = dao.GetUserDAO();
-            MainForm mainForm = new MainForm(user);
+            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+            DataProvider.Init(new NpgsqlConnection(connetionString));
+
+            IDAO pro = new ProductDAO();
+
+            MainForm mainForm = new MainForm(pro);
             Application.Run(mainForm);
         }
     }

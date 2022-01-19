@@ -12,9 +12,10 @@ namespace SEP.DEMO
     {
         private static NpgsqlConnection _con;
 
-        public DataProvider(NpgsqlConnection con)
+        private DataProvider() { }
+
+        public static void Init(NpgsqlConnection con)
         {
-            //string strConnection = ConfigurationManager.ConnectionStrings["DatabaseName"].ConnectionString;
             _con = con;
         }
 

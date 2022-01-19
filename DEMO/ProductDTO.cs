@@ -12,9 +12,9 @@ namespace SEP.DEMO
         private string _productName;
         private string _productPrice;
         private string _categoryId;
-        public string Id { get => _productId; set => _productId = value; }
-        public string Name { get => _productName; set => _productName = value; }
-        public string Price { get => _productPrice; set => _productPrice = value; }
-        public string CategoryId { get => _categoryId; set => _categoryId = value; }
+        public string id { get => _productId; set => _productId = value; }
+        public string name { get => _productName; set => _productName = value; }
+        public string price { get => _productPrice; set => _productPrice = value; }
+        public string category_id { get => _categoryId; set => _categoryId = value; }
     }
 }

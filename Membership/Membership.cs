@@ -70,7 +70,6 @@ namespace SEP.Membership
 
         public bool Logout(string username)
         {
-            
             return true;
         }
     }

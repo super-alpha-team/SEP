@@ -1,9 +1,10 @@
 using DAO;
 using DTO;
 using SEP.Forms;
-using SEP.Membership;
+using Membership = SEP.Membership;
 using System.Configuration;
 using System.Diagnostics;
+using SEP.Membership;
 
 namespace SEP
 {
@@ -19,21 +20,21 @@ namespace SEP
             Application.EnableVisualStyles();
             //Application.Run(new MainForm());
 
-            string strConnection = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
-            IDatabaseDAO dao = new PostgresSQLDAO(strConnection);
-            IDAO user = dao.GetUserDAO();
-            Debug.WriteLine(user.GetColumns().ToString());
-            createForm(user);
-            void createForm(IDAO user)
-            {
-                List<object> lstUser = user.All();
-                foreach (UserDTO u in lstUser)
-                {
-                    Debug.WriteLine("UserName: " + u.Username);
-                    Debug.WriteLine("PassWord: " + u.Password);
-                    Debug.WriteLine("Role: " + u.Role);
-                }
-            }
+            //string strConnection = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+            //IDatabaseDAO dao = new PostgresSQLDAO(strConnection);
+            //IDAO user = dao.GetUserDAO();
+            //Debug.WriteLine(user.GetColumns().ToString());
+            //createForm(user);
+            //void createForm(IDAO user)
+            //{
+            //    List<object> lstUser = user.All();
+            //    foreach (UserDTO u in lstUser)
+            //    {
+            //        Debug.WriteLine("UserName: " + u.Username);
+            //        Debug.WriteLine("PassWord: " + u.Password);
+            //        Debug.WriteLine("Role: " + u.Role);
+            //    }
+            //}
         }
     }
 }

@@ -24,14 +24,17 @@ namespace SEP.Membership
             return _membership;
         }
 
+        public static void registerApp (DataConnection data)
+        {
+            data.createConnection();
+
+            
+
+        }
+
         public static Tuple<string, bool> login(string username, string password) {
             //todo: call DAO to get login data
-            if(true)
-            {
-                _membership._username = username;
-                _membership._password = password;
-                _membership
-            }
+            //check xem 
 
 
             return new Tuple<string, bool>(username, true);

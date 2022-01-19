@@ -1,4 +1,5 @@
 using SEP.Forms;
+using SEP.Membership;
 
 namespace SEP
 {
@@ -14,6 +15,9 @@ namespace SEP
             Application.EnableVisualStyles();
             //Application.Run(new MainForm());
 
+            PostgesqlDataConnection connect = new PostgesqlDataConnection("a", "b", "c");
+
+            Membership.Membership.registerApp(connect);
 
         }
     }

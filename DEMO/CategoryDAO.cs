@@ -19,8 +19,8 @@ namespace SEP.DEMO
             foreach (DataRow dr in dt.Rows)
             {
                 CategoryDTO catDTO = new CategoryDTO();
-                catDTO.Id = dr["Id"].ToString();
-                catDTO.Name = dr["Name"].ToString();
+                catDTO.id = dr["id"].ToString();
+                catDTO.name = dr["name"].ToString();
                 lstDTO.Add(catDTO);
             }
             return lstDTO;
@@ -41,7 +41,7 @@ namespace SEP.DEMO
         }
         public void Delete(Dictionary<string, string> values)
         {
-            string query = "DELETE FROM \"Categories\" WHERE Id='" + values["Id"] + "'";
+            string query = "DELETE FROM \"Categories\" WHERE id='" + values["id"] + "'";
             DataProvider.ExecuteNoneQuery(query);
         }
 
@@ -67,7 +67,7 @@ namespace SEP.DEMO
 
         public void Inserṭ̣̣(Dictionary<string, string> values)
         {
-            string query = "INSERT INTO \"Categories\" (Id,Name) values(N'" + values["Id"] + "',N'" + "',N'" + values["Name"] + "')";
+            string query = "INSERT INTO \"Categories\" (id,name) values(N'" + values["id"] + "',N'" +  values["name"] + "')";
             DataProvider.ExecuteNoneQuery(query);
         }
 
@@ -79,7 +79,7 @@ namespace SEP.DEMO
         }
         public void Update(Dictionary<string, string> values)
         {
-            string query = "UPDATE \"Categories\" SET Name='" + values["Name"] + "' WHERE Id='" + values["Id"] + "'";
+            string query = "UPDATE \"Categories\" SET Name='" + values["name"] + "' WHERE id='" + values["id"] + "'";
             DataProvider.ExecuteNoneQuery(query);
         }
     }

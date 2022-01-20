@@ -38,7 +38,8 @@ namespace SEP.Forms
 
                 // go to dashboard
                 Dashboard db = new Dashboard();
-                db.ShowDialog();
+                this.Close();
+                db.Show();
             } else
             {
                 MessageBox.Show("Login fail");

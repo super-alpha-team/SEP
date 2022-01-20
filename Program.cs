@@ -24,11 +24,15 @@ namespace SEP
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
 
-            //Debug.WriteLine("he");
+            Debug.WriteLine("he");
             //string strConnection = ConfigurationManager.ConnectionStrings["MyApp2"].ConnectionString;
             //IDatabaseDAO dao = new MySQLDAO(strConnection);
+
+            //string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+
             //IDAO user = dao.GetUserDAO();
-            ////Debug.WriteLine(user.GetColumns().ToString());
+            //Debug.WriteLine(user.GetColumns().ToString());
 
             //List<object> lstUser = user.All();
             //foreach (UserDTO u in lstUser)
@@ -39,16 +43,20 @@ namespace SEP
             //}
 
 
-            string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
-            IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
-            IDAO userDAO = dao.GetUserDAO();
-            //MainForm mainForm = new MainForm(userDAO);
-            DataProvider.Init(new NpgsqlConnection(connetionString));
+            //string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+            //IDAO userDAO = dao.GetUserDAO();
+            ////MainForm mainForm = new MainForm(userDAO);
+            //DataProvider.Init(new NpgsqlConnection(connetionString));
 
-            IDAO pro = new ProductDAO();
+            //IDAO pro = new ProductDAO();
 
-            MainForm mainForm = new ProductForm(pro);
-            Application.Run(mainForm);
+            //MainForm mainForm = new ProductForm(pro);
+            //Application.Run(mainForm);
+
+            //Member m = Member.GetInstance("a");
+            //Debug.WriteLine(m);
+            Member.someBusinessLogic();
         }
         
         

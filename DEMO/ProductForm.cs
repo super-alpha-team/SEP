@@ -8,11 +8,21 @@ using SEP.Forms;
 
 namespace SEP.DEMO
 {
-    public class ProductForm : MainForm
+    public class ProductForm : BaseForm
     {
         public ProductForm(IDAO dao) : base(dao)
         {
+            //if(role == "user")
+            //{
+            //    base.deleteRowButton.Disable = false;
+            //}
+        }
 
+        protected override void LayoutConfig()
+        {
+            base.LayoutConfig();
+            base.addNewRowButton.BackColor = Color.ForestGreen;
+            base.deleteRowButton.BackColor = Color.Red;
         }
         private void AddRowButton_Click(object sender, EventArgs e)
         {
@@ -20,7 +30,7 @@ namespace SEP.DEMO
             {
                 // kh co quyen
             }
-            base.AddRowButton_Click(sender, e);
+            //base.AddRowButton_Click(sender, e);
 
         }
 

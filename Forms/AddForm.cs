@@ -33,11 +33,19 @@ namespace SEP.Forms
         }
         private void AddButton_Click(object? sender, EventArgs e)
         {
-            foreach (string key in columns.Keys)
+            if (string.IsNullOrWhiteSpace(inputList.First().Value.Text))
             {
-                columns[key] = inputList[key].Text;
+                inputList.First().Value.Focus();
+                MessageBox.Show("Key should not be left blank!");
             }
-            this.Close();
+            else
+            {
+                foreach (string key in columns.Keys)
+                {
+                    columns[key] = inputList[key].Text;
+                }
+                this.Close();
+            }
         }
         protected void SetupLayout()
         {
@@ -77,7 +85,7 @@ namespace SEP.Forms
                 Label label = new()
                 {
                 Text = column,
-                Size = new Size(100, 20),
+                Size = new Size(150, 25),
                 Location = new Point(20, 20 + i * 40),
                 Parent = this,
                 };

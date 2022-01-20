@@ -21,5 +21,10 @@ namespace SEP.Forms
         {
 
         }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

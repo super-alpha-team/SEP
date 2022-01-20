@@ -14,13 +14,13 @@ namespace SEP.DEMO
         {
 
         }
-        private void addRowButton_Click(object sender, EventArgs e)
+        private void AddRowButton_Click(object sender, EventArgs e)
         {
             if (1 != 1)
             {
                 // kh co quyen
             }
-            base.addRowButton_Click(sender, e);
+            base.AddRowButton_Click(sender, e);
 
         }
 

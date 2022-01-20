@@ -28,6 +28,7 @@ namespace SEP.Membership
             {
                 if(u.Username == username && u.Password == password)
                 {
+                    Member.GetInstance(u.Role);
                     return true;
                 }
             }
@@ -68,9 +69,9 @@ namespace SEP.Membership
             return true;
         }
 
-        public bool Logout(string username)
+        public bool Logout()
         {
-            return true;
+            return Member.logoutUser();
         }
     }
 }

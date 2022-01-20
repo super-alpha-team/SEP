@@ -23,13 +23,11 @@ namespace SEP
             Application.EnableVisualStyles();
 
             string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
-            IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
-            IDAO userDAO = dao.GetUserDAO();
-            //MainForm mainForm = new MainForm(userDAO);
+            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+            //IDAO userDAO = dao.GetUserDAO();
+            //MainForm mainForm = new(userDAO);
             DataProvider.Init(new NpgsqlConnection(connetionString));
-
             IDAO pro = new ProductDAO();
-
             MainForm mainForm = new ProductForm(pro);
             Application.Run(mainForm);
         }

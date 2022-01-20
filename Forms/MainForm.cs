@@ -15,23 +15,23 @@ namespace SEP.Forms
 {
     public partial class MainForm : Form
     {
-        private DataGridView dataGridView = new DataGridView();    
-        private Button addNewRowButton = new Button();
-        private Button updateRowButton = new Button();
-        private Button deleteRowButton = new Button();
-        private Panel buttonPanel = new Panel();
+        private DataGridView dataGridView = new();    
+        private Button addNewRowButton = new();
+        private Button updateRowButton = new();
+        private Button deleteRowButton = new();
+        private Panel buttonPanel = new();
 
-        private AddForm addForm = new AddForm();
-        private UpdateForm updateForm = new UpdateForm();
-        private BindingSource bindingSource = new BindingSource();
-        private DataTable dataTable = new DataTable();
+        private AddForm addForm = new();
+        private UpdateForm updateForm = new();
+        private BindingSource bindingSource = new();
+        private DataTable dataTable = new();
         private IDAO dao;
 
         public MainForm(IDAO dao)
         {
             this.dao = dao;
             this.dataTable = dao.All(true);
-            this.Load += new EventHandler(this.MainForm_Load);
+            this.Load += new EventHandler(MainForm_Load);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -39,9 +39,19 @@ namespace SEP.Forms
             SetupLayout();
             BindData(dataTable);
         }
-        protected void addRowButton_Click(object sender, EventArgs e)
+
+        private Dictionary<string,string> GetColumns(DataTable dataTable)
         {
-            Dictionary<string, string> columns = dao.GetColumns();
+            Dictionary<string, string> columns = new Dictionary<string, string>();
+            foreach (DataColumn dr in dataTable.Columns)
+            {
+                columns.Add(dr.ColumnName.ToString().ToLower(), null);
+            }
+            return columns;
+        }
+        protected void AddRowButton_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> columns = GetColumns(dataTable);
             addForm.columns = columns;
             addForm.ShowDialog();
             if (!addForm.isCancel)
@@ -50,53 +60,66 @@ namespace SEP.Forms
                 DataRow newRow = dataTable.NewRow();
                 newRow.ItemArray = row;
                 dataTable.Rows.Add(newRow);
-                Dictionary<string, string> newData = new Dictionary<string, string>();
+                Dictionary<string, string> newData = new();
                 foreach (string key in addForm.columns.Keys)
                 {
-                    newData.Add(key.ToLower(), addForm.columns[key]);
+                    newData.Add(key, addForm.columns[key]);
                 }
                 dao.Inserṭ̣̣(newData);
             }
         }
-        protected void updateRowButton_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
-            Dictionary<string, string> columns = dao.GetColumns();
-            foreach (string key in columns.Keys)
-            {
-                columns[key] = (string)selectedRow.Cells[key].Value;
-            }
-            updateForm.columns = columns;
-            updateForm.ShowDialog();
-            if (!addForm.isCancel)
-            {
-                string[] row = updateForm.columns.Values.ToArray();
-                selectedRow.SetValues(row);
-                Dictionary<string, string> updateData = new Dictionary<string, string>();
-                foreach (string key in updateForm.columns.Keys)
-                {
-                    updateData.Add(key.ToLower(), updateForm.columns[key]);
-                }
-                dao.Update(updateData);
-            }
-        }
-
-        protected void deleteRowButton_Click(object sender, EventArgs e)
+        private void RowUpdate()
         {
             if (this.dataGridView.SelectedRows.Count > 0 &&
                 this.dataGridView.SelectedRows[0].Index !=
                 this.dataGridView.Rows.Count - 1)
             {
                 DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
-                Dictionary<string, string> deleteData = new Dictionary<string, string>();
-                foreach (string key in dao.GetColumns().Keys)
+                Dictionary<string, string> columns = GetColumns(dataTable);
+                foreach (string key in columns.Keys)
                 {
-                    deleteData.Add(key.ToLower(), (string)selectedRow.Cells[key].Value);
+                    columns[key] = (string)selectedRow.Cells[key].Value;
+                }
+                updateForm.columns = columns;
+                updateForm.ShowDialog();
+                if (!addForm.isCancel)
+                {
+                    string[] row = updateForm.columns.Values.ToArray();
+                    selectedRow.SetValues(row);
+                    Dictionary<string, string> updateData = new();
+                    foreach (string key in updateForm.columns.Keys)
+                    {
+                        updateData.Add(key, updateForm.columns[key]);
+                    }
+                    dao.Update(updateData);
+                }
+            }
+        }
+        protected void UpdateRowButton_Click(object sender, EventArgs e)
+        {
+            RowUpdate();
+        }
+
+        private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            RowUpdate();
+        }
+
+        protected void DeleteRowButton_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView.SelectedRows.Count > 0 &&
+                this.dataGridView.SelectedRows[0].Index !=
+                this.dataGridView.Rows.Count - 1)
+            {
+                DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
+                Dictionary<string, string> deleteData = new();
+                foreach (string key in GetColumns(dataTable).Keys)
+                {
+                    deleteData.Add(key, (string)selectedRow.Cells[key].Value);
                 }
                 dao.Delete(deleteData); 
                 this.dataGridView.Rows.RemoveAt(
                     this.dataGridView.SelectedRows[0].Index);
-                
             } 
         }
 
@@ -107,17 +130,17 @@ namespace SEP.Forms
             addNewRowButton.Text = "Add Row";
             addNewRowButton.Size = new Size(160, 34);
             addNewRowButton.Location = new Point(10, 10);
-            addNewRowButton.Click += new EventHandler(addRowButton_Click);
+            addNewRowButton.Click += new EventHandler(AddRowButton_Click);
             
             updateRowButton.Text = "Update Row";
             updateRowButton.Size = new Size(160, 34);
             updateRowButton.Location = new Point(180, 10);
-            updateRowButton.Click += new EventHandler(updateRowButton_Click);
+            updateRowButton.Click += new EventHandler(UpdateRowButton_Click);
 
             deleteRowButton.Text = "Delete Row";
             deleteRowButton.Size = new Size(160, 34);
             deleteRowButton.Location = new Point(350, 10);
-            deleteRowButton.Click += new EventHandler(deleteRowButton_Click);
+            deleteRowButton.Click += new EventHandler(DeleteRowButton_Click);
 
             buttonPanel.Controls.Add(addNewRowButton);
             buttonPanel.Controls.Add(updateRowButton);
@@ -127,6 +150,7 @@ namespace SEP.Forms
 
             this.Controls.Add(this.buttonPanel);
             this.Controls.Add(dataGridView);
+            dataGridView.CellDoubleClick += DataGridView_CellDoubleClick;
 
             dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
             dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;

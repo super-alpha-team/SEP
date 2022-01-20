@@ -10,20 +10,19 @@ using System.Windows.Forms;
 
 namespace SEP.Forms
 {
-    public partial class AddForm : Form
+    internal partial class AddForm : Form
     {
-        private Panel buttonPanel = new Panel();
-        private Button addButton = new Button();
-        private Button cancelButton = new Button();
+        private Panel buttonPanel = new();
+        private Button addButton = new();
+        private Button cancelButton = new();
 
-        private Dictionary<string, TextBox> inputList = new Dictionary<string, TextBox>();
-        private List<Control> controlList = new List<Control>();
-        public Dictionary<string, string> columns = new Dictionary<string, string>();
+        private Dictionary<string, TextBox> inputList = new();
+        private List<Control> controlList = new();
+        public Dictionary<string, string> columns = new();
         public bool isCancel = false;
 
         public AddForm()
         {
-            //InitializeComponent();
             this.Load += new EventHandler(AddForm_Load);
         }
 
@@ -32,7 +31,7 @@ namespace SEP.Forms
             SetupLayout();
             CreateLabel();
         }
-        private void addButton_Click(object? sender, EventArgs e)
+        private void AddButton_Click(object? sender, EventArgs e)
         {
             foreach (string key in columns.Keys)
             {
@@ -47,12 +46,12 @@ namespace SEP.Forms
             addButton.Text = "Add";
             addButton.Size = new Size(112, 34);
             addButton.Location = new Point(10, 10);
-            addButton.Click += new EventHandler(addButton_Click);
+            addButton.Click += new EventHandler(AddButton_Click);
 
             cancelButton.Text = "Cancel";
             cancelButton.Size = new Size(112, 34); 
             cancelButton.Location = new Point(122, 10);
-            cancelButton.Click += new EventHandler(cancelButton_Click);
+            cancelButton.Click += new EventHandler(CancelButton_Click);
 
             buttonPanel.Controls.Add(addButton);
             buttonPanel.Controls.Add(cancelButton);
@@ -75,17 +74,21 @@ namespace SEP.Forms
             int i = 0;
             foreach (string column in columns.Keys)
             {
-                Label label = new Label();
-                label.Text = column;
-                label.Size = new Size(100, 20);
-                label.Location = new Point(20, 20 + i * 40);
-                label.Parent = this;
+                Label label = new()
+                {
+                Text = column,
+                Size = new Size(100, 20),
+                Location = new Point(20, 20 + i * 40),
+                Parent = this,
+                };
                 this.Controls.Add(label);
 
-                TextBox textBox = new TextBox();
-                textBox.Size = new Size(300, 20);
-                textBox.Location = new Point(230, 20 + i * 40);
-                textBox.Parent = this;
+                TextBox textBox = new()
+                {
+                    Size = new Size(300, 20),
+                    Location = new Point(230, 20 + i * 40),
+                    Parent = this
+                };
                 this.Controls.Add(textBox);
 
                 controlList.Add(label);
@@ -97,7 +100,7 @@ namespace SEP.Forms
             }
         }
 
-        private void cancelButton_Click(object? sender, EventArgs e)
+        private void CancelButton_Click(object? sender, EventArgs e)
         {
             isCancel = true;
             this.Close();

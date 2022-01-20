@@ -11,7 +11,7 @@
   <Class Name="DAO.MySQLRoleDAO" Collapsed="true">
     <Position X="3.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAQAAEAQAAAAIAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAQAAEAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>DAO\MySQLRoleDAO.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -77,18 +77,19 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="SEP.BaseForm">
-    <Position X="3" Y="7" Width="1.5" />
+    <Position X="3" Y="7" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>gAAAASAAAAAAAEAgAiAAAIEBAAhAAAAKoAAEAAAAAAA=</HashCode>
+      <HashCode>gAYAASgAAAAAAEAgAAAAAAEAAAlAAAAKIAAAAAAAQAA=</HashCode>
       <FileName>Forms\BaseForm.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SEP.Implementation">
-    <Position X="5.25" Y="7" Width="1.5" />
+  <Class Name="SEP.AddUpdateDeleteImplementation">
+    <Position X="5.25" Y="8.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAYgEAEABAAAAAAAAAAAAAAAAAEAAAAAAIgAAAABAAA=</HashCode>
-      <FileName>Forms\Implementation.cs</FileName>
+      <FileName>Forms\AddUpdateDeleteImplementation.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="DAO.IDatabaseDAO" Collapsed="true">
     <Position X="8" Y="3" Width="1.5" />
@@ -109,6 +110,13 @@
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAQAAEAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>DAO\IDAO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SEP.Implementation">
+    <Position X="5.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Implementation.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

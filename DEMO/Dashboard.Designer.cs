@@ -44,21 +44,21 @@
             // 
             // products
             // 
-            this.products.Location = new System.Drawing.Point(226, 211);
+            this.products.Location = new System.Drawing.Point(436, 207);
             this.products.Name = "products";
             this.products.Size = new System.Drawing.Size(112, 34);
             this.products.TabIndex = 1;
-            this.products.Text = "Products";
+            this.products.Text = "Categories";
             this.products.UseVisualStyleBackColor = true;
             this.products.Click += new System.EventHandler(this.categories_Click);
             // 
             // categories
             // 
-            this.categories.Location = new System.Drawing.Point(465, 211);
+            this.categories.Location = new System.Drawing.Point(190, 207);
             this.categories.Name = "categories";
             this.categories.Size = new System.Drawing.Size(112, 34);
             this.categories.TabIndex = 2;
-            this.categories.Text = "Categories";
+            this.categories.Text = "Products";
             this.categories.UseVisualStyleBackColor = true;
             this.categories.Click += new System.EventHandler(this.products_Click);
             // 

@@ -3,7 +3,6 @@ using DTO;
 using Npgsql;
 using SEP.DAO;
 using SEP.Forms;
-using Membership = SEP.Membership;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -24,16 +23,13 @@ namespace SEP
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
 
-            string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
-            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
-            //IDAO userDAO = dao.GetUserDAO();
-            //BaseForm mainForm = new(userDAO);
+            // dang ky membership khi bat dau chuong trinh
+            Membership.Membership.Register();
 
-            DataProvider.Init(new NpgsqlConnection(connetionString));
-            IDAO pro = new ProductDAO();
-            BaseForm mainForm = new ProductForm(pro);
+            // flow chuong trinh nhu binh thuong
+            LoginForm loginForm = new LoginForm();
 
-            Application.Run(mainForm);
+            Application.Run(loginForm);
         }
         
         

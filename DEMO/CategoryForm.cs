@@ -1,17 +1,20 @@
-﻿using System;
+﻿using DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAO;
-using SEP.Forms;
 
 namespace SEP.DEMO
 {
-    public class ProductForm : BaseForm
+    public class CategoryForm : BaseForm
     {
-        public ProductForm(IDAO dao) : base(dao)
+        public CategoryForm(IDAO dao) : base(dao)
         {
+            //if(role == "user")
+            //{
+            //    base.deleteRowButton.Disable = false;
+            //}
         }
 
         protected override void LayoutConfig()
@@ -20,16 +23,14 @@ namespace SEP.DEMO
             base.addNewRowButton.BackColor = Color.ForestGreen;
             base.deleteRowButton.BackColor = Color.Red;
         }
-        protected override void Add()
+        private void AddRowButton_Click(object sender, EventArgs e)
         {
-            if (!Membership.Member.validateWithRole("admin"))
+            if (1 != 1)
             {
                 // kh co quyen
-                MessageBox.Show("permisstion deny");
-                return;
             }
-            base.Add();
-        }
+            //base.AddRowButton_Click(sender, e);
 
+        }
     }
 }

@@ -3,10 +3,12 @@ using DTO;
 using Npgsql;
 using SEP.DAO;
 using SEP.Forms;
+using Membership = SEP.Membership;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using SEP.Membership;
 using SEP.DEMO;
 
 namespace SEP
@@ -22,6 +24,7 @@ namespace SEP
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
 
+<<<<<<< HEAD
             string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
             //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
             //IDAO userDAO = dao.GetUserDAO();
@@ -30,7 +33,44 @@ namespace SEP
             IDAO pro = new ProductDAO();
             MainForm mainForm = new ProductForm(pro);
             Application.Run(mainForm);
+=======
+            Debug.WriteLine("he");
+            //string strConnection = ConfigurationManager.ConnectionStrings["MyApp2"].ConnectionString;
+            //IDatabaseDAO dao = new MySQLDAO(strConnection);
+
+            //string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+
+            //IDAO user = dao.GetUserDAO();
+            //Debug.WriteLine(user.GetColumns().ToString());
+
+            //List<object> lstUser = user.All();
+            //foreach (UserDTO u in lstUser)
+            //{
+            //    Debug.WriteLine("UserName: " + u.Username);
+            //    Debug.WriteLine("PassWord: " + u.Password);
+            //    Debug.WriteLine("Role: " + u.Role);
+            //}
+
+
+            //string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+            //IDAO userDAO = dao.GetUserDAO();
+            ////MainForm mainForm = new MainForm(userDAO);
+            //DataProvider.Init(new NpgsqlConnection(connetionString));
+
+            //IDAO pro = new ProductDAO();
+
+            //MainForm mainForm = new ProductForm(pro);
+            //Application.Run(mainForm);
+
+            //Member m = Member.GetInstance("a");
+            //Debug.WriteLine(m);
+            Member.someBusinessLogic();
+>>>>>>> 01702b53a7163b824a21cb65c681ff78f461d3fb
         }
+        
+        
     }
 }
 

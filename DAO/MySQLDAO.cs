@@ -14,12 +14,12 @@ namespace DAO
         }
         public IDAO GetUserDAO()
         {
-            throw new NotImplementedException();
+            return new MySQLRoleDAO(_strConnection);
         }
 
         public IDAO GetRoleDAO()
         {
-            throw new NotImplementedException();
+            return new MySQLRoleDAO(_strConnection);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace SEP.Forms
             SetupLayout();
             BindData(dataTable);
         }
-        private void addRowButton_Click(object sender, EventArgs e)
+        protected void addRowButton_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> columns = dao.GetColumns();
             addForm.columns = columns;
@@ -58,7 +58,7 @@ namespace SEP.Forms
                 dao.Inserṭ̣̣(newData);
             }
         }
-        private void updateRowButton_Click(object sender, EventArgs e)
+        protected void updateRowButton_Click(object sender, EventArgs e)
         {
             DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
             Dictionary<string, string> columns = dao.GetColumns();
@@ -80,8 +80,8 @@ namespace SEP.Forms
                 dao.Update(updateData);
             }
         }
-        
-        private void deleteRowButton_Click(object sender, EventArgs e)
+
+        protected void deleteRowButton_Click(object sender, EventArgs e)
         {
             if (this.dataGridView.SelectedRows.Count > 0 &&
                 this.dataGridView.SelectedRows[0].Index !=

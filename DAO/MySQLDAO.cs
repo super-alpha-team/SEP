@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAO
 {
-    public class MySQLDAO : IDatabaseDAO
+    internal class MySQLDAO : IDatabaseDAO
     {
         private string _strConnection;
         public MySQLDAO(string strConnection)
@@ -14,7 +14,7 @@ namespace DAO
         }
         public IDAO GetUserDAO()
         {
-            return new MySQLRoleDAO(_strConnection);
+            return new MySQLUserDAO(_strConnection);
         }
 
         public IDAO GetRoleDAO()

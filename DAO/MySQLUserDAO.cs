@@ -25,9 +25,9 @@ namespace DAO
         public override List<object> All()
         {
             List<object> lstUserDTO = new List<object>();
-            String query = "SELECT * FROM User";
+            String query = "SELECT * FROM Users";
 
-            DataTable dt = dataProvider.ExecuteQuery(query);
+            DataTable dt = MySQLDataProvider.ExecuteQuery(query);
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -42,19 +42,22 @@ namespace DAO
 
         public override DataTable All(bool resultDataTable)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * FROM Users";
+            DataTable dt = MySQLDataProvider.ExecuteQuery(query);
+            return dt;
         }
 
         public override void Delete(object a)
         {
             UserDTO userDTO = (UserDTO)a;
-            String query = "delete from User where Username=" + userDTO.Username.ToString();
-            dataProvider.ExecuteNoneQuery(query);
+            String query = "delete from Users where Username='" + userDTO.Username.ToString() + "'";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Delete(Dictionary<string, string> values)
         {
-            throw new NotImplementedException();
+            string query = "DELETE FROM Users WHERE username='" + values["username"] + "'";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override Dictionary<string, string> GetColumns()
@@ -73,25 +76,27 @@ namespace DAO
         public override void Inserṭ̣̣(object a)
         {
             UserDTO userDTO = (UserDTO)a;
-            String query = "insert into User values(" + userDTO.Username.ToString() + "," + userDTO.Password + "')";
-            dataProvider.ExecuteNoneQuery(query);
+            String query = "insert into Users values(N'" + userDTO.Username.ToString() + "',N'" + userDTO.Password + "',N'" + userDTO.Role + "')";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Inserṭ̣̣(Dictionary<string, string> values)
         {
-            throw new NotImplementedException();
+            string query = "INSERT INTO Users values(N'" + values["username"] + "',N'" + values["password"] + "',N'" + values["role"] + "')";
+            PostgresSQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Update(object a)
         {
             UserDTO userDTO = (UserDTO)a;
-            String query = "update User set Username=" + userDTO.Username + "";
-            dataProvider.ExecuteNoneQuery(query);
+            String query = "update Users set password='" + userDTO.Password + "', role='" + userDTO.Role + "' WHERE username='" + userDTO.Username + "'";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Update(Dictionary<string, string> values)
         {
-            throw new NotImplementedException();
+            string query = "UPDATE Users SET password='" + values["password"] + "', role='" + values["role"] + "' WHERE username='" + values["username"] + "'";
+            PostgresSQLDataProvider.ExecuteNoneQuery(query);
         }
     }
 }

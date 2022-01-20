@@ -26,7 +26,7 @@ namespace DAO
             List<object> lstRoleDTO = new List<object>();
             String query = "SELECT * FROM Role";
 
-            DataTable dt = dataProvider.ExecuteQuery(query);
+            DataTable dt = MySQLDataProvider.ExecuteQuery(query);
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -41,19 +41,22 @@ namespace DAO
 
         public override DataTable All(bool resultDataTable)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * FROM Roles";
+            DataTable dt = MySQLDataProvider.ExecuteQuery(query);
+            return dt;
         }
 
         public override void Delete(object a)
         {
             RoleDTO roleDTO = (RoleDTO)a;
-            String query = "delete from Role where id=" + roleDTO.Id.ToString();
-            dataProvider.ExecuteNoneQuery(query);
+            String query = "delete from Role where id='" + roleDTO.Id.ToString() + "'";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Delete(Dictionary<string, string> values)
         {
-            throw new NotImplementedException();
+            String query = "delete from Role where id='" + values["id"] + "'";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override Dictionary<string, string> GetColumns()
@@ -72,25 +75,27 @@ namespace DAO
         public override void Inserṭ̣̣(object a)
         {
             RoleDTO roleDTO = (RoleDTO)a;
-            String query = "insert into Role values(" + roleDTO.RoleName.ToString() + ")";
-            dataProvider.ExecuteNoneQuery(query);
+            String query = "insert into Role values(N'" + roleDTO.RoleName.ToString() + "')";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Inserṭ̣̣(Dictionary<string, string> values)
         {
-            throw new NotImplementedException();
+            String query = "insert into Role values(N'" + values["rolename"] + "')";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Update(object a)
         {
             RoleDTO roleDTO = (RoleDTO)a;
-            String query = "update Role set RoleName=" + roleDTO.RoleName.ToString() + ")";
-            dataProvider.ExecuteNoneQuery(query);
+            String query = "update Role set RoleName='" + roleDTO.RoleName.ToString() + "' WHERE id='" + roleDTO.Id + "'";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Update(Dictionary<string, string> values)
         {
-            throw new NotImplementedException();
+            String query = "update Role set RoleName='" + values["rolename"] + "' WHERE id='" + values["id"] + "'";
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
     }
 }

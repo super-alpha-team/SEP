@@ -8,11 +8,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-<<<<<<< HEAD
 using SEP.Membership;
-=======
 using SEP.DEMO;
->>>>>>> beef6713511cf677f18ac213e8bd9dfc4ddc8d51
 
 namespace SEP
 {
@@ -27,32 +24,21 @@ namespace SEP
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
 
-<<<<<<< HEAD
-
-            //string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
-            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+            //Debug.WriteLine("he");
+            //string strConnection = ConfigurationManager.ConnectionStrings["MyApp2"].ConnectionString;
+            //IDatabaseDAO dao = new MySQLDAO(strConnection);
             //IDAO user = dao.GetUserDAO();
-            //UserForm form = new UserForm(user, new Size(1000, 1000));
-            //Application.Run(form);
+            ////Debug.WriteLine(user.GetColumns().ToString());
+
+            //List<object> lstUser = user.All();
+            //foreach (UserDTO u in lstUser)
+            //{
+            //    Debug.WriteLine("UserName: " + u.Username);
+            //    Debug.WriteLine("PassWord: " + u.Password);
+            //    Debug.WriteLine("Role: " + u.Role);
+            //}
 
 
-            //"server=server;user=user;database=db;password=*****;"
-
-            Debug.WriteLine("he");
-            string strConnection = ConfigurationManager.ConnectionStrings["MyApp2"].ConnectionString;
-            IDatabaseDAO dao = new MySQLDAO(strConnection);
-            IDAO user = dao.GetUserDAO();
-            //Debug.WriteLine(user.GetColumns().ToString());
-
-            List<object> lstUser = user.All();
-            foreach (UserDTO u in lstUser)
-            {
-                Debug.WriteLine("UserName: " + u.Username);
-                Debug.WriteLine("PassWord: " + u.Password);
-                Debug.WriteLine("Role: " + u.Role);
-            }
-
-=======
             string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
             IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
             IDAO userDAO = dao.GetUserDAO();
@@ -63,7 +49,6 @@ namespace SEP
 
             MainForm mainForm = new ProductForm(pro);
             Application.Run(mainForm);
->>>>>>> beef6713511cf677f18ac213e8bd9dfc4ddc8d51
         }
         
         

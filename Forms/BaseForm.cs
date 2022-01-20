@@ -10,7 +10,7 @@ namespace SEP
 {
     public class BaseForm : Form
     {
-        private Implementation i;
+        private AddUpdateDeleteImplementation i;
 
         protected Button addNewRowButton = new();
         protected Button updateRowButton = new();
@@ -20,7 +20,7 @@ namespace SEP
 
         public BaseForm(IDAO dao)
         {
-            this.i = new Implementation(dao);
+            this.i = new AddUpdateDeleteImplementation(dao);
             SetupLayout();
         }
 

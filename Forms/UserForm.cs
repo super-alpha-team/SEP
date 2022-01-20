@@ -83,11 +83,11 @@ namespace SEP.Forms
             Dictionary<string, string> columns = userDAO.GetColumns();
             addForm.columns = columns;
             addForm.ShowDialog();
-            if(addForm.results.Count != 0)
-            {
-                string[] row = addForm.results.ToArray();
-                dataGridView.Rows.Add(row);
-            }
+            //if(addForm.results.Count != 0)
+            //{
+            //    string[] row = addForm.results.ToArray();
+            //    dataGridView.Rows.Add(row);
+            //}
         }
         private void updateRowButton_Click(object sender, EventArgs e)
         {

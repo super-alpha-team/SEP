@@ -1,6 +1,8 @@
 ﻿using DTO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Data;
@@ -38,11 +40,21 @@ namespace DAO
             return lstUserDTO;
         }
 
+        public override DataTable All(bool resultDataTable)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Delete(object a)
         {
             UserDTO userDTO = (UserDTO)a;
             String query = "delete from User where Username=" + userDTO.Username.ToString();
             dataProvider.ExecuteNoneQuery(query);
+        }
+
+        public override void Delete(Dictionary<string, string> values)
+        {
+            throw new NotImplementedException();
         }
 
         public override Dictionary<string, string> GetColumns()
@@ -65,11 +77,21 @@ namespace DAO
             dataProvider.ExecuteNoneQuery(query);
         }
 
+        public override void Inserṭ̣̣(Dictionary<string, string> values)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Update(object a)
         {
             UserDTO userDTO = (UserDTO)a;
             String query = "update User set Username=" + userDTO.Username + "";
             dataProvider.ExecuteNoneQuery(query);
+        }
+
+        public override void Update(Dictionary<string, string> values)
+        {
+            throw new NotImplementedException();
         }
     }
 }

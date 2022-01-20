@@ -18,8 +18,8 @@ namespace SEP.Forms
 
         private Dictionary<string, TextBox> inputList = new Dictionary<string, TextBox>();
         private List<Control> controlList = new List<Control>();
-        public Dictionary<String, String> columns = new Dictionary<string, string>();
-        public List<string> results =  new List<string>();
+        public Dictionary<string, string> columns = new Dictionary<string, string>();
+        public bool isCancel = false;
 
         public AddForm()
         {
@@ -34,9 +34,9 @@ namespace SEP.Forms
         }
         private void addButton_Click(object? sender, EventArgs e)
         {
-            foreach (string column in columns.Keys)
+            foreach (string key in columns.Keys)
             {
-                results.Add(inputList[column].Text);
+                columns[key] = inputList[key].Text;
             }
             this.Close();
         }
@@ -71,7 +71,6 @@ namespace SEP.Forms
 
             controlList.Clear();
             inputList.Clear();
-            results.Clear();
 
             int i = 0;
             foreach (string column in columns.Keys)
@@ -100,6 +99,7 @@ namespace SEP.Forms
 
         private void cancelButton_Click(object? sender, EventArgs e)
         {
+            isCancel = true;
             this.Close();
         }
 

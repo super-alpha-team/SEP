@@ -20,13 +20,13 @@ namespace SEP.DAO
             _con = con;
         }
 
-        public void ExecuteNoneQuery(string strQuery)
+        public static void ExecuteNoneQuery(string strQuery)
         {
             try
             {
-                NpgsqlCommand cmd = new NpgsqlCommand();
-                cmd.CommandText = strQuery;
-                cmd.CommandType = CommandType.Text;
+                _con.Open();
+
+                NpgsqlCommand cmd = new NpgsqlCommand(strQuery, _con);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@ namespace SEP.DAO
             }
         }
 
-        public DataTable ExecuteQuery(string strQuery)
+        public static DataTable ExecuteQuery(string strQuery)
         {
             DataTable dataTable = new DataTable();
 

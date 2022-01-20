@@ -8,7 +8,10 @@ namespace DAO
 {
     public interface IDataProvider
     {
-        void ExecuteNoneQuery(string strQuery);
-        DataTable ExecuteQuery(string strQuery);
+        static void ExecuteNoneQuery(string strQuery) { }
+        static DataTable ExecuteQuery(string strQuery)
+        {
+            throw new NotImplementedException();   
+        }
     }
 }

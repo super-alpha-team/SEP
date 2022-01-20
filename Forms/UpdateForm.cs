@@ -12,6 +12,15 @@ namespace SEP.Forms
 {
     public partial class UpdateForm : Form
     {
+        private Panel buttonPanel = new Panel();
+        private Button updateButton = new Button();
+        private Button cancelButton = new Button();
+
+        private Dictionary<string, TextBox> inputList = new Dictionary<string, TextBox>();
+        private List<Control> controlList = new List<Control>();
+        public Dictionary<string, string> columns = new Dictionary<string, string>();
+        public bool isCancel = false;
+
         public UpdateForm()
         {
             //InitializeComponent();
@@ -19,19 +28,47 @@ namespace SEP.Forms
 
         }
 
-        private Panel buttonPanel = new Panel();
-        private Button updateButton = new Button();
-        private Button cancelButton = new Button();
-
-        private string[] row;
-        private Dictionary<string, TextBox> inputList = new Dictionary<string, TextBox>();
-        private List<Control> controlList = new List<Control>();
-
-        public string[] Row { get => row; set => row = value; }
-
         private void UpdateForm_Load(object sender, EventArgs e)
         {
             SetupLayout();
+            CreateLabel();
+        }
+
+        private void CreateLabel()
+        {
+            foreach (Control control in controlList)
+            {
+                this.Controls.Remove(control);
+            }
+
+            controlList.Clear();
+            inputList.Clear();
+
+            int i = 0;
+            foreach (string key in columns.Keys)
+            {
+                Label label = new Label();
+                label.Text = key;
+                label.Size = new Size(100, 20);
+                label.Location = new Point(20, 20 + i * 40);
+                label.Parent = this;
+                this.Controls.Add(label);
+
+                TextBox textBox = new TextBox();
+                textBox.Text = columns[key];
+                textBox.Size = new Size(300, 20);
+                textBox.Location = new Point(230, 20 + i * 40);
+                textBox.Parent = this;
+                if (i==0) textBox.ReadOnly = true;
+                this.Controls.Add(textBox);
+
+                controlList.Add(label);
+                controlList.Add(textBox);
+                if (!inputList.ContainsKey(key))
+                    inputList.Add(key, textBox);
+
+                i++;
+            }
         }
 
         protected void SetupLayout()
@@ -56,16 +93,21 @@ namespace SEP.Forms
             this.Controls.Add(this.buttonPanel);
 
         }
-
-        private void cancelButton_Click(object? sender, EventArgs e)
+        private void updateButton_Click(object? sender, EventArgs e)
         {
+            foreach (string key in columns.Keys)
+            {
+                columns[key] = inputList[key].Text;
+            }
             this.Close();
         }
 
-        private void updateButton_Click(object? sender, EventArgs e)
+        private void cancelButton_Click(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            isCancel = true;
+            this.Close();
         }
+
 
     }
 }

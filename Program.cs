@@ -1,12 +1,18 @@
 using DAO;
 using DTO;
+using Npgsql;
+using SEP.DAO;
 using SEP.Forms;
 using Membership = SEP.Membership;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+<<<<<<< HEAD
 using SEP.Membership;
+=======
+using SEP.DEMO;
+>>>>>>> beef6713511cf677f18ac213e8bd9dfc4ddc8d51
 
 namespace SEP
 {
@@ -21,6 +27,7 @@ namespace SEP
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
 
+<<<<<<< HEAD
 
             //string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
             //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
@@ -45,6 +52,18 @@ namespace SEP
                 Debug.WriteLine("Role: " + u.Role);
             }
 
+=======
+            string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+            IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
+            IDAO userDAO = dao.GetUserDAO();
+            //MainForm mainForm = new MainForm(userDAO);
+            DataProvider.Init(new NpgsqlConnection(connetionString));
+
+            IDAO pro = new ProductDAO();
+
+            MainForm mainForm = new ProductForm(pro);
+            Application.Run(mainForm);
+>>>>>>> beef6713511cf677f18ac213e8bd9dfc4ddc8d51
         }
         
         

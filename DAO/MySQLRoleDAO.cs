@@ -3,39 +3,72 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+using SEP.DAO;
+using System.Reflection;
 
 namespace DAO
 {
     public class MySQLRoleDAO : RoleDAO
     {
+        IDataProvider dataProvider;
         public MySQLRoleDAO(string strConnection)
         {
             _strConnection = strConnection;
+            dataProvider = new MySQLDataProvider(new SqlConnection(_strConnection));
         }
 
         public override List<object> All()
         {
-            throw new NotImplementedException();
+            List<object> lstRoleDTO = new List<object>();
+            String query = "SELECT * FROM Role";
+
+            DataTable dt = dataProvider.ExecuteQuery(query);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                RoleDTO roleDTO = new RoleDTO();
+                roleDTO.RoleName = dr["rolename"].ToString();
+                //roleDTO.Id = dr["id"].ToString();
+
+                lstRoleDTO.Add(roleDTO);
+            }
+            return lstRoleDTO;
         }
 
         public override void Delete(object a)
         {
-            throw new NotImplementedException();
+            RoleDTO roleDTO = (RoleDTO)a;
+            String query = "delete from Role where id=" + roleDTO.Id.ToString();
+            dataProvider.ExecuteNoneQuery(query);
         }
 
         public override Dictionary<string, string> GetColumns()
         {
-            throw new NotImplementedException();
+            Dictionary<string, string> columns = new Dictionary<string, string>();
+            PropertyInfo[] props = typeof(RoleDTO).GetProperties();
+            foreach (PropertyInfo prop in props)
+            {
+                string name = prop.Name;
+                string type = prop.PropertyType.ToString();
+                columns.Add(name, type);
+            }
+            return columns;
         }
 
         public override void Inserṭ̣̣(object a)
         {
-            throw new NotImplementedException();
+            RoleDTO roleDTO = (RoleDTO)a;
+            String query = "insert into Role values(" + roleDTO.RoleName.ToString() + ")";
+            dataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Update(object a)
         {
-            throw new NotImplementedException();
+            RoleDTO roleDTO = (RoleDTO)a;
+            String query = "update Role set RoleName=" + roleDTO.RoleName.ToString() + ")";
+            dataProvider.ExecuteNoneQuery(query);
         }
     }
 }

@@ -20,33 +20,34 @@ namespace SEP
         {
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
-<<<<<<< HEAD
 
-            string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
-            IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
-            IDAO user = dao.GetUserDAO();
-            UserForm form = new UserForm(user, new Size(1000, 1000));
-            Application.Run(form);
-=======
-            //Application.Run(new MainForm());
 
-            //string strConnection = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
-            //IDatabaseDAO dao = new PostgresSQLDAO(strConnection);
+            //string connetionString = ConfigurationManager.ConnectionStrings["MyApp"].ConnectionString;
+            //IDatabaseDAO dao = new PostgresSQLDAO(connetionString);
             //IDAO user = dao.GetUserDAO();
+            //UserForm form = new UserForm(user, new Size(1000, 1000));
+            //Application.Run(form);
+
+
+            //"server=server;user=user;database=db;password=*****;"
+
+            Debug.WriteLine("he");
+            string strConnection = ConfigurationManager.ConnectionStrings["MyApp2"].ConnectionString;
+            IDatabaseDAO dao = new MySQLDAO(strConnection);
+            IDAO user = dao.GetUserDAO();
             //Debug.WriteLine(user.GetColumns().ToString());
-            //createForm(user);
-            //void createForm(IDAO user)
-            //{
-            //    List<object> lstUser = user.All();
-            //    foreach (UserDTO u in lstUser)
-            //    {
-            //        Debug.WriteLine("UserName: " + u.Username);
-            //        Debug.WriteLine("PassWord: " + u.Password);
-            //        Debug.WriteLine("Role: " + u.Role);
-            //    }
-            //}
->>>>>>> mai
+
+            List<object> lstUser = user.All();
+            foreach (UserDTO u in lstUser)
+            {
+                Debug.WriteLine("UserName: " + u.Username);
+                Debug.WriteLine("PassWord: " + u.Password);
+                Debug.WriteLine("Role: " + u.Role);
+            }
+
         }
+        
+        
     }
 }
 

@@ -12,7 +12,7 @@ using System.Text;
 
 namespace DAO
 {
-    public class PostgresSQLUserDAO : UserDAO
+    internal class PostgresSQLUserDAO : UserDAO
     {
         public PostgresSQLUserDAO(string strConnection)
         {

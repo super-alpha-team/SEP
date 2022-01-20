@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SEP.DAO
 {
-    public class PostgresSQLDataProvider : IDataProvider
+    internal class PostgresSQLDataProvider : IDataProvider
     {
         private static NpgsqlConnection _con;
 

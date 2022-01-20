@@ -1,20 +1,20 @@
 ﻿using DAO;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SEP.DAO
 {
-    public class MySQLDataProvider : IDataProvider
+    internal class MySQLDataProvider : IDataProvider
     {
-        private static SqlConnection _con;
+        private static MySqlConnection _con;
 
-        public MySQLDataProvider(SqlConnection con)
+        public MySQLDataProvider(MySqlConnection con)
         {
             //string strConnection = ConfigurationManager.ConnectionStrings["BookOnlineDB"].ConnectionString;
             _con = con;
@@ -28,7 +28,7 @@ namespace SEP.DAO
             {
                 _con.Open();
 
-                SqlDataAdapter adapter = new SqlDataAdapter(strQuery, _con);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(strQuery, _con);
 
                 adapter.Fill(resTable);
             }
@@ -49,7 +49,7 @@ namespace SEP.DAO
             try
             {
                 _con.Open();
-                SqlCommand cmd = new SqlCommand(strQuery, _con);
+                MySqlCommand cmd = new MySqlCommand(strQuery, _con);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

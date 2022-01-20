@@ -6,19 +6,18 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Data;
-using System.Data.SqlClient;
 using SEP.DAO;
 using System.Reflection;
+using MySql.Data.MySqlClient;
 
 namespace DAO
 {
-    public class MySQLRoleDAO : RoleDAO
+    internal class MySQLRoleDAO : RoleDAO
     {
-        IDataProvider dataProvider;
         public MySQLRoleDAO(string strConnection)
         {
             _strConnection = strConnection;
-            dataProvider = new MySQLDataProvider(new SqlConnection(_strConnection));
+            IDataProvider dataProvider = new MySQLDataProvider(new MySqlConnection(_strConnection));
         }
 
         public override List<object> All()

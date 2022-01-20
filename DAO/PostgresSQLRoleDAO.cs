@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DAO
 {
-    public class PostgresSQLRoleDAO : RoleDAO
+    internal class PostgresSQLRoleDAO : RoleDAO
     {
         public PostgresSQLRoleDAO(string strConnection)
         {

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DAO
 {
-    public abstract class UserDAO : IDAO
+    internal abstract class UserDAO : IDAO
     {
         protected string _strConnection="";
 

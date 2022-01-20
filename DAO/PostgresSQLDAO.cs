@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAO
 {
-    public class PostgresSQLDAO : IDatabaseDAO
+    internal class PostgresSQLDAO : IDatabaseDAO
     {
         private string _strConnection;
         public PostgresSQLDAO(string strConnection)

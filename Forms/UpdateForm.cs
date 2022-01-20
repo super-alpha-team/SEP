@@ -18,8 +18,8 @@ namespace SEP.Forms
 
         private Dictionary<string, TextBox> inputList = new Dictionary<string, TextBox>();
         private List<Control> controlList = new List<Control>();
-        public Dictionary<String, String> columns = new Dictionary<string, string>();
-        public List<string> results = new List<string>();
+        public Dictionary<string, string> columns = new Dictionary<string, string>();
+        public bool isCancel = false;
 
         public UpdateForm()
         {
@@ -43,7 +43,6 @@ namespace SEP.Forms
 
             controlList.Clear();
             inputList.Clear();
-            results.Clear();
 
             int i = 0;
             foreach (string key in columns.Keys)
@@ -60,6 +59,7 @@ namespace SEP.Forms
                 textBox.Size = new Size(300, 20);
                 textBox.Location = new Point(230, 20 + i * 40);
                 textBox.Parent = this;
+                if (i==0) textBox.ReadOnly = true;
                 this.Controls.Add(textBox);
 
                 controlList.Add(label);
@@ -97,13 +97,14 @@ namespace SEP.Forms
         {
             foreach (string key in columns.Keys)
             {
-                results.Add(inputList[key].Text);
+                columns[key] = inputList[key].Text;
             }
             this.Close();
         }
 
         private void cancelButton_Click(object? sender, EventArgs e)
         {
+            isCancel = true;
             this.Close();
         }
 

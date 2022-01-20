@@ -44,9 +44,9 @@ namespace SEP.Forms
             Dictionary<string, string> columns = dao.GetColumns();
             addForm.columns = columns;
             addForm.ShowDialog();
-            if (addForm.results.Count != 0)
+            if (!addForm.isCancel)
             {
-                string[] row = addForm.results.ToArray();
+                string[] row = addForm.columns.Values.ToArray();
                 DataRow newRow = dataTable.NewRow();
                 newRow.ItemArray = row;
                 dataTable.Rows.Add(newRow);
@@ -68,9 +68,9 @@ namespace SEP.Forms
             }
             updateForm.columns = columns;
             updateForm.ShowDialog();
-            if (updateForm.results.Count != 0)
+            if (!addForm.isCancel)
             {
-                string[] row = updateForm.results.ToArray();
+                string[] row = updateForm.columns.Values.ToArray();
                 selectedRow.SetValues(row);
                 Dictionary<string, string> updateData = new Dictionary<string, string>();
                 foreach (string key in updateForm.columns.Keys)
@@ -87,19 +87,20 @@ namespace SEP.Forms
                 this.dataGridView.SelectedRows[0].Index !=
                 this.dataGridView.Rows.Count - 1)
             {
-                this.dataGridView.Rows.RemoveAt(
-                    this.dataGridView.SelectedRows[0].Index);
                 DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
                 Dictionary<string, string> deleteData = new Dictionary<string, string>();
                 foreach (string key in dao.GetColumns().Keys)
                 {
                     deleteData.Add(key.ToLower(), (string)selectedRow.Cells[key].Value);
                 }
-                dao.Delete(deleteData);
-            }
+                dao.Delete(deleteData); 
+                this.dataGridView.Rows.RemoveAt(
+                    this.dataGridView.SelectedRows[0].Index);
+                
+            } 
         }
 
-        private void SetupLayout()
+        protected void SetupLayout()
         {
             this.Size = new Size(600, 500);
 
@@ -125,10 +126,6 @@ namespace SEP.Forms
             buttonPanel.Dock = DockStyle.Bottom;
 
             this.Controls.Add(this.buttonPanel);
-        }
-
-        private void BindData(DataTable dataTable)
-        {
             this.Controls.Add(dataGridView);
 
             dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
@@ -151,11 +148,14 @@ namespace SEP.Forms
             dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView.MultiSelect = false;
             dataGridView.Dock = DockStyle.Fill;
+            dataGridView.AutoResizeColumns(
+             DataGridViewAutoSizeColumnsMode.ColumnHeader);
+        }
 
+        private void BindData(DataTable dataTable)
+        {
             dataGridView.DataSource = bindingSource;
             bindingSource.DataSource = dataTable;
-            dataGridView.AutoResizeColumns(
-           DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
         }
     }
 }

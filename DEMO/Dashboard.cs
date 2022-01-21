@@ -34,14 +34,19 @@ namespace SEP.DEMO
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            if (!Membership.Member.validateWithRole("admin"))
-            {
-                // kh co quyen
-                MessageBox.Show("permisstion deny");
-                return;
-            }
+            
+        }
+
+        private void AdminButton_Click(object sender, EventArgs e)
+        {
             Membership.Membership.DashBoard();
         }
 
+        private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Form owner = this.Owner;
+            owner.RemoveOwnedForm(this);
+            owner.Close();
+        }
     }
 }

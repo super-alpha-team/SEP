@@ -22,7 +22,7 @@ namespace SEP.Membership
             _userName = username;
         }
         
-        private static Member _member;
+        private static Member? _member;
 
         public static Member GetInstance(string role, string username)
         {
@@ -63,7 +63,7 @@ namespace SEP.Membership
                 MessageBox.Show("Permisstion deny");
                 return;
             }
-            BaseForm userForm = new BaseForm(user);
+            BaseForm userForm = new BaseForm(new AddUpdateDeleteImplementation(user));
             userForm.Show();
             return;
         }

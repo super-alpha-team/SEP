@@ -26,16 +26,6 @@ namespace SEP
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
 
-
-            //string connetionString = ConfigurationManager.ConnectionStrings["MyApp2"].ConnectionString;
-            //IDatabaseDAO dao = new MySQLDAO(connetionString);
-            //IDAO userDAO = dao.GetUserDAO();
-            //BaseForm mainForm = new(userDAO);
-
-            //DataProvider.Init(new NpgsqlConnection(connetionString));
-            //IDAO pro = new ProductDAO();
-            //BaseForm mainForm = new ProductForm(pro);
-
             // dang ky membership khi bat dau chuong trinh
             Membership.Membership.Register();
 
@@ -45,14 +35,6 @@ namespace SEP
             Application.Run(loginForm);
 
         }
-
-        class Foo
-        {
-            [DisplayName("abc")]
-            [Browsable(false)]
-            public string Bar { get; set; }
-        }
-        
     }
 }
 

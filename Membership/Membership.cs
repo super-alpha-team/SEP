@@ -26,6 +26,7 @@ namespace SEP.Membership
             new DAO.Migration(dataBaseType);
             user = dao.GetUserDAO();
             role = dao.GetRoleDAO();
+            CreateDefaultAccount();
         }
 
         private static IDAO user;

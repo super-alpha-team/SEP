@@ -11,7 +11,7 @@ namespace SEP.DEMO
 {
     public class CategoryForm : BaseForm
     {
-        public CategoryForm(IDAO dao) : base(dao)
+        public CategoryForm(IDAO dao) : base(new AddUpdateDeleteImplementation(dao))
         {
             
         }

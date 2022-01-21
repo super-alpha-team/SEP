@@ -22,7 +22,7 @@ namespace SEP.Forms
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            
+            this.CenterToScreen();  
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
@@ -38,6 +38,8 @@ namespace SEP.Forms
                 // go to dashboard
                 Dashboard db = new Dashboard();
                 db.Show();
+                db.Owner = this;
+                this.Hide();
             } else
             {
                 MessageBox.Show("Login fail");

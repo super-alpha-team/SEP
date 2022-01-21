@@ -12,7 +12,7 @@ namespace SEP.DEMO
 {
     public class ProductForm : BaseForm
     {
-        public ProductForm(IDAO dao) : base(dao)
+        public ProductForm(IDAO dao) : base(new AddUpdateDeleteImplementation(dao))
         {
         }
 

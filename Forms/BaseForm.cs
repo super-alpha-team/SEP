@@ -13,7 +13,7 @@ namespace SEP
 {
     public class BaseForm : Form
     {
-        private AddUpdateDeleteImplementation i;
+        private Implementation i;
 
         protected Button addNewRowButton = new();
         protected Button updateRowButton = new();
@@ -21,9 +21,9 @@ namespace SEP
         protected Panel buttonPanel = new();
         protected DataGridView dataGridView = new();
 
-        public BaseForm(IDAO dao)
+        public BaseForm(Implementation i)
         {
-            this.i = new AddUpdateDeleteImplementation(dao);
+            this.i = i;
             SetupLayout();
         }
 
@@ -84,7 +84,7 @@ namespace SEP
             dataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.ColumnHeader);
         }
 
-        protected virtual void Update()
+        protected new virtual void Update()
         {
             i.Update(dataGridView.SelectedRows[0]);
         }

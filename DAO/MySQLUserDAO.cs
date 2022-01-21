@@ -82,7 +82,7 @@ namespace DAO
         public override void Inserṭ̣̣(Dictionary<string, string> values)
         {
             string query = "INSERT INTO Users values(N'" + values["username"] + "',N'" + values["password"] + "',N'" + values["role"] + "')";
-            PostgresSQLDataProvider.ExecuteNoneQuery(query);
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
 
         public override void Update(object a)
@@ -95,7 +95,7 @@ namespace DAO
         public override void Update(Dictionary<string, string> values)
         {
             string query = "UPDATE Users SET password='" + values["password"] + "', role='" + values["role"] + "' WHERE username='" + values["username"] + "'";
-            PostgresSQLDataProvider.ExecuteNoneQuery(query);
+            MySQLDataProvider.ExecuteNoneQuery(query);
         }
     }
 }

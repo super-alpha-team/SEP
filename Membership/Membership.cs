@@ -13,7 +13,7 @@ namespace SEP.Membership
     {
         private IDatabaseDAO dao;
         private Membership() {
-            string dataBaseType = ConfigurationManager.AppSettings["DatabaseType"].ToString();
+            string dataBaseType = ConfigurationManager.AppSettings["DatabaseType"].ToString().ToLower();
             string connetionString = ConfigurationManager.ConnectionStrings[dataBaseType].ConnectionString;
             if (dataBaseType.ToLower() == "mysql")
             {
@@ -23,6 +23,7 @@ namespace SEP.Membership
             {
                 dao = new PostgresSQLDAO(connetionString);
             }
+            new DAO.Migration(dataBaseType);
             user = dao.GetUserDAO();
             role = dao.GetRoleDAO();
         }

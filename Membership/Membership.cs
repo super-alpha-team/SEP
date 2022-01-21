@@ -46,14 +46,34 @@ namespace SEP.Membership
             List<object> lstUser = user.All();
             foreach (UserDTO u in lstUser)
             {
-                if(u.Username == username && u.Password == password)
+                if (u.Username == username && u.Password == password)
                 {
                     Member.GetInstance(u.Role);
                     return true;
                 }
             }
-           
+
             return false;
+        }
+
+        public static UserDTO CreateDefaultAccount()
+        {
+            //
+            //UserDTO user = new UserDTO();
+
+            List<object> lstUser = user.All();
+            
+            if(lstUser.Count == 0)
+            {
+                UserDTO newUser = new UserDTO();
+                newUser.Username = "admin";
+                newUser.Password = "admin";
+                newUser.Role = "admin";
+                user.Inserṭ̣̣(newUser);
+                return newUser;
+            }
+            
+            return null;
         }
 
         public bool LoginWithAdminRole(string username, string password)

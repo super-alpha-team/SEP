@@ -23,7 +23,6 @@ namespace SEP.Forms
         private void LoginForm_Load(object sender, EventArgs e)
         {
             
-
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
@@ -38,7 +37,6 @@ namespace SEP.Forms
 
                 // go to dashboard
                 Dashboard db = new Dashboard();
-                this.Close();
                 db.Show();
             } else
             {

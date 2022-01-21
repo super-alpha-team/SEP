@@ -9,6 +9,9 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using SEP.Membership;
 using SEP.DEMO;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace SEP
 {
@@ -30,8 +33,15 @@ namespace SEP
             LoginForm loginForm = new LoginForm();
 
             Application.Run(loginForm);
+
         }
-        
+
+        class Foo
+        {
+            [DisplayName("abc")]
+            [Browsable(false)]
+            public string Bar { get; set; }
+        }
         
     }
 }

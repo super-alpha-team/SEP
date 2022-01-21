@@ -1,9 +1,12 @@
 ﻿using DAO;
 using SEP.Forms;
+using SEP.Membership;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace SEP
@@ -85,7 +88,7 @@ namespace SEP
         {
             i.Update(dataGridView.SelectedRows[0]);
         }
-        
+
         protected virtual void Delete()
         {
             if (dataGridView.SelectedRows.Count > 0 &&

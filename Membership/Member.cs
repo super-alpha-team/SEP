@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAO;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -51,6 +52,19 @@ namespace SEP.Membership
                 return true;
             }
             return false;
+        }
+
+        public static void DashBoard(IDAO user)
+        {
+            if (!validateWithRole("admin"))
+            {
+                // kh co quyen
+                MessageBox.Show("Permisstion deny");
+                return;
+            }
+            BaseForm userForm = new BaseForm(user);
+            userForm.Show();
+            return;
         }
     }
 }

@@ -50,7 +50,7 @@ namespace SEP.Membership
             {
                 if (u.Username == username && u.Password == password)
                 {
-                    Member.GetInstance(u.Role);
+                    Member.GetInstance(u.Role, u.Username);
                     return true;
                 }
             }

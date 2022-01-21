@@ -12,22 +12,23 @@ namespace SEP.Membership
     {
         private string _Role;
         private bool _isLogin;
-        //private string _userName;
+        private string _userName;
         //private string _password;
 
-        private Member(string role) 
+        private Member(string role, string username) 
         { 
             _Role = role;
             _isLogin = true;
+            _userName = username;
         }
         
         private static Member _member;
 
-        public static Member GetInstance(string role)
+        public static Member GetInstance(string role, string username)
         {
             if (_member == null)
             {
-                _member = new Member(role);
+                _member = new Member(role, username);
             }
             return _member;
         }

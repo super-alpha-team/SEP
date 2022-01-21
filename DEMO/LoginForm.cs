@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Npgsql;
+using SEP.DEMO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -25,7 +28,24 @@ namespace SEP.Forms
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            //Membership.login(usernameTextBox.Text, passwordTextBox.Text); boolean
+            String usr = usernameTextBox.Text;
+            String pwd = passwordTextBox.Text;
+            if (Membership.Membership.Login(usr, pwd))
+            {
+                // init my database provider
+                string connetionString = ConfigurationManager.ConnectionStrings["postgresql"].ConnectionString;
+                DataProvider.Init(new NpgsqlConnection(connetionString));
+
+                // go to dashboard
+                Dashboard db = new Dashboard();
+                this.Close();
+                db.Show();
+            } else
+            {
+                MessageBox.Show("Login fail");
+            }
+
         }
+
     }
 }

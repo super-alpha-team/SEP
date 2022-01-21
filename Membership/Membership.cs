@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,18 +11,37 @@ namespace SEP.Membership
 {
     public class Membership
     {
-        private Membership() { }
-
-        private IDAO user;
-        private IDAO role;
-
-        public Membership(IDatabaseDAO databaseDAO)
-        {
-            user = databaseDAO.GetUserDAO();
-            role = databaseDAO.GetRoleDAO();
+        private IDatabaseDAO dao;
+        private Membership() {
+            string dataBaseType = ConfigurationManager.AppSettings["DatabaseType"].ToString().ToLower();
+            string connetionString = ConfigurationManager.ConnectionStrings[dataBaseType].ConnectionString;
+            if (dataBaseType.ToLower() == "mysql")
+            {
+                dao = new MySQLDAO(connetionString);
+            }
+            if (dataBaseType.ToLower() == "postgresql")
+            {
+                dao = new PostgresSQLDAO(connetionString);
+            }
+            new DAO.Migration(dataBaseType);
+            user = dao.GetUserDAO();
+            role = dao.GetRoleDAO();
         }
 
-        public bool Login(string username, string password)
+        private static IDAO user;
+        private static IDAO role;
+        public static Membership Register()
+        {
+            if (_instance == null)
+            {
+                _instance = new Membership();
+            }
+            return _instance;
+        }
+
+        private static Membership _instance;
+
+        public static bool Login(string username, string password)
         {
             List<object> lstUser = user.All();
             foreach (UserDTO u in lstUser)

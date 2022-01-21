@@ -10,7 +10,7 @@ namespace SEP.DEMO
     {
         private string _categoryName;
         private string _categoryId;
-        public string Name { get => _categoryName; set => _categoryName = value; }
-        public string Id { get => _categoryId; set => _categoryId = value; }
+        public string name { get => _categoryName; set => _categoryName = value; }
+        public string id { get => _categoryId; set => _categoryId = value; }
     }
 }

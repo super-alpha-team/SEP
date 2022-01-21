@@ -9,6 +9,9 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using SEP.Membership;
 using SEP.DEMO;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace SEP
 {
@@ -24,10 +27,10 @@ namespace SEP
             Application.EnableVisualStyles();
 
 
-            string connetionString = ConfigurationManager.ConnectionStrings["MyApp2"].ConnectionString;
-            IDatabaseDAO dao = new MySQLDAO(connetionString);
-            IDAO userDAO = dao.GetUserDAO();
-            BaseForm mainForm = new(userDAO);
+            //string connetionString = ConfigurationManager.ConnectionStrings["MyApp2"].ConnectionString;
+            //IDatabaseDAO dao = new MySQLDAO(connetionString);
+            //IDAO userDAO = dao.GetUserDAO();
+            //BaseForm mainForm = new(userDAO);
 
             //DataProvider.Init(new NpgsqlConnection(connetionString));
             //IDAO pro = new ProductDAO();
@@ -40,8 +43,15 @@ namespace SEP
             LoginForm loginForm = new LoginForm();
 
             Application.Run(loginForm);
+
         }
-        
+
+        class Foo
+        {
+            [DisplayName("abc")]
+            [Browsable(false)]
+            public string Bar { get; set; }
+        }
         
     }
 }

@@ -30,6 +30,8 @@ namespace SEP.Membership
 
         private static IDAO user;
         private static IDAO role;
+
+        private string roleDefault = "admin";
         public static Membership Register()
         {
             if (_instance == null)
@@ -56,11 +58,9 @@ namespace SEP.Membership
             return false;
         }
 
+
         public static UserDTO CreateDefaultAccount()
         {
-            //
-            //UserDTO user = new UserDTO();
-
             List<object> lstUser = user.All();
             
             if(lstUser.Count == 0)
@@ -76,7 +76,7 @@ namespace SEP.Membership
             return null;
         }
 
-        public bool LoginWithAdminRole(string username, string password)
+        public static bool LoginWithAdminRole(string username, string password)
         {
             List<object> lstUser = user.All();
             foreach (UserDTO u in lstUser)
@@ -90,7 +90,7 @@ namespace SEP.Membership
             return false;
         }
 
-        public bool Register(string username, string password)
+        public static bool Register(string username, string password)
         {
             List<object> lstUser = user.All();
             foreach (UserDTO u in lstUser)
@@ -109,7 +109,12 @@ namespace SEP.Membership
             return true;
         }
 
-        public bool Logout()
+        public static void DashBoard()
+        {
+            Member.DashBoard(user);
+        } 
+
+        public static bool Logout()
         {
             return Member.logoutUser();
         }

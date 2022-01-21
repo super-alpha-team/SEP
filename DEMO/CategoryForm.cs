@@ -1,7 +1,9 @@
 ﻿using DAO;
+using SEP.Membership;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,26 +13,54 @@ namespace SEP.DEMO
     {
         public CategoryForm(IDAO dao) : base(dao)
         {
-            //if(role == "user")
-            //{
-            //    base.deleteRowButton.Disable = false;
-            //}
+            
         }
 
         protected override void LayoutConfig()
         {
             base.LayoutConfig();
-            base.addNewRowButton.BackColor = Color.ForestGreen;
-            base.deleteRowButton.BackColor = Color.Red;
+            addNewRowButton.Text = "Add Category";
+
+            updateRowButton.Text = "Update Category";
+
+            deleteRowButton.Text = "Delete Category";
         }
-        private void AddRowButton_Click(object sender, EventArgs e)
+
+        [Sep("admin")]
+        protected override void Update()
         {
-            if (1 != 1)
+            MethodBase method = MethodBase.GetCurrentMethod();
+            SepAttribute attr = (SepAttribute)method.GetCustomAttributes(typeof(SepAttribute), true)[0];
+            bool value = attr.IsAllow;    //Assumes that MyAttribute has a property called Value
+            if (value)
+            {
+                base.Update();
+            }
+            else
+            {
+                MessageBox.Show("permisstion deny");
+            }
+        }
+        protected override void Add()
+        {
+            if (!Membership.Member.validateWithRole("admin"))
             {
                 // kh co quyen
+                MessageBox.Show("permisstion deny");
+                return;
             }
-            //base.AddRowButton_Click(sender, e);
+            base.Add();
+        }
 
+        protected override void Delete()
+        {
+            if (!Membership.Member.validateWithRole("admin"))
+            {
+                // kh co quyen
+                MessageBox.Show("permisstion deny");
+                return;
+            }
+            base.Delete();
         }
     }
 }

@@ -103,6 +103,7 @@ namespace SEP.Membership
             UserDTO newUser = new UserDTO();
             newUser.Username = username;
             newUser.Password = password;
+            newUser.Role = "user";
 
             user.Inserṭ̣̣(newUser);
 
